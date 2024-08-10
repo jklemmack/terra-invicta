@@ -1,0 +1,2 @@
+﻿.\Copy-MatchingFiles.ps1 -TargetDir .\data -SourceDir "C:\Program Files (x86)\Steam\steamapps\common\Terra Invicta\TerraInvicta_Data\StreamingAssets\Localization\en"
+.\Copy-MatchingFiles.ps1 -TargetDir .\data -SourceDir "C:\Program Files (x86)\Steam\steamapps\common\Terra Invicta\TerraInvicta_Data\StreamingAssets\Templates"
