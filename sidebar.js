@@ -68,8 +68,23 @@ class TechSidebar extends React.Component {
             return effect;
         }
         const effectObj = this.findEffectByName(effect);
+        
+        // This doesn't work well for Effect_RegionGDP*
+        if (effectObj.dataName.startsWith('Effect_RegionGDPGain')) {
+
+            const effectTemplateString = data[effect].description
+                .replace(/^-/g, "")
+                .replace(/\{13\}/g, effectObj.strValue)
+                .replace(/\{3\}/g, effectObj.value * 100)
+
+            return effectTemplateString;     
+
+        } else {
+            
         const effectQuantityString = effectObj ?
-            effectObj.value + " (" + effectObj.operation.toLowerCase() + ")" : "";
+            effectObj.value + " (" + (effectObj.operation || '').toLowerCase() + ")" : "";
+
+
         const effectTemplateString = data[effect].description
             .replace(/^-/g, "")
             .replace(/\{[0-9]*\}/g, effectQuantityString)
@@ -80,8 +95,8 @@ class TechSidebar extends React.Component {
             .replace('<color=#FFFFFFFF><sprite name="metal_noble"></color>', "Noble Metals")
             .replace('<color=#FFFFFFFF><sprite name="radioactive"></color>', "Fissiles");
 
-
-        return effectTemplateString;
+            return effectTemplateString;     
+        }
     }
 
     getReadableSummary() {
